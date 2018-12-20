@@ -68,8 +68,8 @@ public class MainFrame extends JFrame implements ActionListener{
 
 		// contentPane.add("패널별명", new 패널());
 		contentPane.add("SalesReg", new SalesReg());
-		//contentPane.add("SalesStatus", new SalesStatus());
-		//contentPane.add("Stock", new StockSearch());
+		contentPane.add("SalesStatus", new SalesStatus());
+		contentPane.add("Stock", new StockSearch());
 
 		add(contentPane);
 
