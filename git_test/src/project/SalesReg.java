@@ -17,8 +17,11 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
-public class SalesReg extends JPanel {
+public class SalesReg extends JPanel implements ActionListener{
 	DefaultTableModel firstTabModel, secTabModel;
 	JTable firstTab, secTab;
 	JScrollPane firstSc, secSc;
@@ -27,9 +30,18 @@ public class SalesReg extends JPanel {
 	private JButton btnSearch, btnReg, btnDelete;
 	private JComboBox divCB, colorCB, sizeCB;
 	
+	DBcon dbcon = new DBcon();
+	
 	String divS[] = {"판매","반품"};
-	String colorS[] = {"선택","BK","WH","NV","CR"};
-	String sizeS[] = {"선택","S","M","L","XL"};	
+	String sizeS[] = {"S","M","L","XL"};	
+	
+	LocalDate currDate = LocalDate.now();
+	/*
+	 * currDate.getYear() 년
+	 * currDate.getMonthValue() 월
+	 * currDate.getDayOfMonth() 일
+	 * currDate.getDayOfWeek() 요일
+	 */
 
 	public SalesReg() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -46,8 +58,9 @@ public class SalesReg extends JPanel {
 		p1.add(lab);
 		
 		// 2
+			//* 총판매금액 - 실판매금액 총액 계산
 		String firstTabName[] = { "판매일자", "총판매금액" };
-		Object firstData[][] = { { "2018-11-02", "20,000" } };
+		Object firstData[][] = { { currDate, "20,000" } };
 		firstTabModel = new DefaultTableModel(firstData, firstTabName);
 		firstTab = new JTable(firstTabModel);
 		firstSc = new JScrollPane(firstTab);
@@ -68,11 +81,11 @@ public class SalesReg extends JPanel {
 		
 		lblCode = new JLabel(" 품번");	p2.add(lblCode);		
 		txtCode = new JTextField();
-		txtCode.setText("code");
 		p2.add(txtCode);
 		
 		lblColor = new JLabel(" 색상"); 	p2.add(lblColor);		
-		colorCB = new JComboBox(colorS);
+		colorCB = new JComboBox();
+		dbcon.combo_color(colorCB);
 		p2.add(colorCB);
 		
 		lblSize = new JLabel(" 사이즈");	p2.add(lblSize);		
@@ -80,33 +93,35 @@ public class SalesReg extends JPanel {
 		p2.add(sizeCB);
 		
 		btnSearch = new JButton("조회");
+		btnSearch.addActionListener(this);
 		p2.add(btnSearch);
 		
 			// 2행
 		lblPrice = new JLabel(" 판매단가");	p2.add(lblPrice);		
 		txtPrice = new JTextField();
-		txtPrice.setText("price");
-		p2.add(txtPrice);
+		txtPrice.setText("0");
+		p2.add(txtPrice); //수정 못하게
 		
 		lblQty = new JLabel(" 재고");	p2.add(lblQty);		
 		txtQty = new JTextField();
-		txtQty.setText("qty");
-		p2.add(txtQty);
+		txtQty.setText("0");
+		p2.add(txtQty); //수정 못하게
 		
 		lblSqty = new JLabel(" 수량");	p2.add(lblSqty);		
 		txtSqty = new JTextField();
-		txtSqty.setText("s_qty");
+		txtSqty.setText("0");
 		p2.add(txtSqty);
 		
 		lblSprice = new JLabel(" 실판매금액");	p2.add(lblSprice);		
 		txtSprice = new JTextField();
-		txtSprice.setText("s_price");
+		txtSprice.setText("0");
 		p2.add(txtSprice);
 		
 		btnReg = new JButton("등록");
+		btnReg.addActionListener(this);
 		p2.add(btnReg);
 				
-		// 4		
+		// 4 - 수정 못하게, 클릭해서 삭제	
 		String secTabName[] = { "구분", "품번", "색상", "사이즈", "판매단가", "수량", "실판매금액"};
 		Object secData[][] = { { "판매", "1", "BK", "S", "5000", "1", "5000" },
 				{ "반품", "2", "WH", "M", "7000", "1", "7000" },
@@ -119,6 +134,7 @@ public class SalesReg extends JPanel {
 		JPanel p3 = new JPanel();
 		add(p3);		
 		btnDelete = new JButton("삭제");
+		btnDelete.addActionListener(this);
 		p3.add(btnDelete);
 
 		// table center align
@@ -133,5 +149,30 @@ public class SalesReg extends JPanel {
 
 		for (int i = 0; i < t2ColModel.getColumnCount(); i++)
 			t2ColModel.getColumn(i).setCellRenderer(tCellRenderer);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String code = txtCode.getText();
+		String color = (String)colorCB.getSelectedItem();
+		String size = (String)sizeCB.getSelectedItem();
+		
+		if (e.getSource() == btnSearch) {
+			//조회
+			//품번, 색상, 사이즈 넘기기
+			//판매단가, 재고 가져오기
+			dbcon.pro_select(code,color,size);
+			
+		}
+		if (e.getSource() == btnReg) {
+			//등록
+			//날짜(currDate), 구분, 품번, 색상, 사이즈, 수량, 실판매금액 넘기기
+			//테이블에 내역 추가
+		}	
+		if (e.getSource() == btnDelete) {
+			//삭제
+			//선택한 테이블 행 삭제
+			//선택한 테이블 데이터 넘기기
+		}
 	}
 }
