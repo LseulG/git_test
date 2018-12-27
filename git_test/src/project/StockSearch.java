@@ -96,7 +96,7 @@ public class StockSearch extends JPanel implements ActionListener {
 			
 			dbcon.clear(firstTab);
 			dbcon.stock_select(firstTab,code);
-			price = dbcon.getPrice();
+			price = dbcon.getPrice().toString();
 			lblPriceNum.setText(price);
 		}
 	}
