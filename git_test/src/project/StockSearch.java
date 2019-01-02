@@ -83,6 +83,7 @@ public class StockSearch extends JPanel implements ActionListener {
 			}
 		};
 		firstTab = new JTable(firstTabModel);
+		firstTab.getTableHeader().setReorderingAllowed(false); // 테이블 열 고정
 		firstSc = new JScrollPane(firstTab);
 		add(firstSc);
 
