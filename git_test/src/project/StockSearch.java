@@ -102,7 +102,7 @@ public class StockSearch extends JPanel implements ActionListener {
 			String no = txtCode.getText();
 			
 			myDBcon.clear(firstTab);
-			myDBcon.stock_select(firstTab,no);
+			myDBcon.searchStock(firstTab,no);
 			price = myDBcon.getPrice().toString();
 			lblPriceNum.setText(price);
 		}
