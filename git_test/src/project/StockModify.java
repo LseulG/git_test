@@ -2,34 +2,19 @@ package project;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 
 import java.awt.Color;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 
 public class StockModify extends JPanel {
 	private JTextField ProNoTextField_2;
@@ -123,19 +108,19 @@ public class StockModify extends JPanel {
 				
 				
 				myDBcon.searchSize(s_name, p_no, p_color, "S");
-				qty = myDBcon.getQty().toString();
+				qty = myDBcon.getStockQuantity().toString();
 				S_Size_Field.setText(qty);
 				
 				myDBcon.searchSize(s_name, p_no, p_color, "M");
-				qty = myDBcon.getQty().toString();
+				qty = myDBcon.getStockQuantity().toString();
 				M_Size_Field.setText(qty);
 
 				myDBcon.searchSize(s_name, p_no, p_color, "L");
-				qty = myDBcon.getQty().toString();
+				qty = myDBcon.getStockQuantity().toString();
 				L_Size_Field.setText(qty);
 				
 				myDBcon.searchSize(s_name, p_no, p_color, "XL");
-				qty = myDBcon.getQty().toString();
+				qty = myDBcon.getStockQuantity().toString();
 				XL_Size_Field.setText(qty);
 	
 			}
