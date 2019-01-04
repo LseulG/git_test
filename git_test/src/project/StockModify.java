@@ -202,10 +202,7 @@ public class StockModify extends JPanel {
 				String p_no = ProNoTextField_2.getText();
 				String p_color = ColorComboBox.getSelectedItem().toString();
 
-				myDBcon.updateStock(c_stock, s_name, p_no, p_color, "S");										
-				myDBcon.updateStock(c_stock, s_name, p_no, p_color, "M");
-				myDBcon.updateStock(c_stock, s_name, p_no, p_color, "L");
-				myDBcon.updateStock(c_stock, s_name, p_no, p_color, "XL");
+				myDBcon.updateStock(c_stock, s_name, p_no, p_color);
 
 			}
 		});

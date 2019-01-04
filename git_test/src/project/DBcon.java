@@ -551,32 +551,46 @@ public class DBcon {
 
 		}
 
-		public void updateStock(String c_stock, String s_name, String p_no, String p_color, String p_size) {
-			String query = "update stock\r\n" + "set p_qty = " + c_stock + "\r\n"
-					+ "where stock.p_code in(select p_code from product \r\n" + "where p_no = " + p_no + " and p_color = '"
-					+ p_color + "' and p_size = '" + p_size + "') \r\n"
-					+ "and stock.s_code in(select s_code from store where s_name = '" + s_name + "')";
-
-			String query1 = "select p_code from product \r\n" + "where p_no = " + p_no + " and p_color = '" + p_color
-					+ "' \r\n" + "and p_size = '" + p_size + "'";
-
-			try {
-				PreparedStatement pstmt1 = null;
-				ResultSet rs1 = null;
-				pstmt1 = con.prepareStatement(query1);
-				rs1 = pstmt1.executeQuery();
-
-				if (rs1.next()) {
-					pstmt = con.prepareStatement(query);
+		public void updateStock(String c_stock, String s_name, String p_no, String p_color) {
+			String[] sizeArray = { "S", "M", "L", "XL" };
+			String updateSizeText = "";
+			String nullSizeText = "";
+			
+			for (int i=0; i<sizeArray.length; i++) {
+				queryResultCount = 0;
+				String query1 = "select p_code from product \r\n" + "where p_no = " 
+								+ p_no + " and p_color = '" + p_color
+								+ "' \r\n" + "and p_size = '" + sizeArray[i] + "'";	
+				
+				String query2 = "update stock\r\n" + "set p_qty = " + c_stock + "\r\n"
+						+ "where stock.p_code in(select p_code from product \r\n" 
+						+ "where p_no = " + p_no + " and p_color = '"
+						+ p_color + "' and p_size = '" + sizeArray[i] + "') \r\n"
+						+ "and stock.s_code in(select s_code from store where s_name = '" + s_name + "')";
+				try {
+					pstmt = con.prepareStatement(query1);
 					rs = pstmt.executeQuery();
-					JOptionPane.showMessageDialog(null, p_size + "수정되었습니다.");
-				} else {
-					JOptionPane.showMessageDialog(null, p_size + "사이즈 상품등록이 필요합니다.");
+					
+					while(rs.next()) {
+						pstmt = con.prepareStatement(query2);
+						ResultSet rs2 = pstmt.executeQuery();
+						
+						queryResultCount = 1;
+						updateSizeText = updateSizeText + sizeArray[i] + " ";
+					}
+					
+					if (queryResultCount == 0) {
+						// 없는 사이즈일 경우
+						nullSizeText = nullSizeText + sizeArray[i] + " ";
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
+				
 			}
+			System.out.println(updateSizeText);
+			JOptionPane.showMessageDialog(null, updateSizeText + "사이즈는 수정되었습니다. \n" 
+											+ nullSizeText + "사이즈는 상품 등록이 필요합니다.");
 		}
 
 		public void createAccount(String id, String pw, String personName, String phone, String storeName, String manage,
