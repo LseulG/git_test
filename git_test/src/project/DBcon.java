@@ -591,9 +591,11 @@ public class DBcon {
 
 	//재고 등록/수정 - 매장 이름 콤보박스에 존재하는 매장이름들 추가하기
 	public void getStoreNameCombobox(JComboBox storeComboBox) { // 매장이름 콤보박스
-		String query = "select distinct sr.s_name from store sr, stock sc "
-				+ "where sr.s_code = sc.s_code and sc.p_qty > 0";
+		String query = "select distinct sr.s_name from store sr, stock sc\r\n" + 
+				"where sr.s_code = sc.s_code and SUBSTR(sr.s_code,1,1) = 'S'\r\n" + 
+				"or SUBSTR(sr.s_code,1,5) = 'H0000'";
 						//재고 수량을 하나이상 가지고 있는 매장이름 출력
+		
 		try {
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
