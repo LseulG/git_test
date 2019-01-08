@@ -452,7 +452,7 @@ public class DBcon {
 
 				String productNo = rs.getString(1);
 				String productPrice = rs.getString(2);
-				String productColor = rs.getString(2);
+				String productColor = rs.getString(3);
 				String productSize = rs.getString(4);
 				String stockQuantity = rs.getString(5);
 
