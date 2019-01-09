@@ -96,7 +96,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		}
 
 		// StockSearch 재고조회
-		stockSearchItem = new JMenuItem("재고조회");
+		stockSearchItem = new JMenuItem("상품 재고조회");
 		stockMenu.add(stockSearchItem);
 		stockSearchItem.addActionListener(this);
 		contentPane.add("StockSearch", new StockSearch(myDBcon));
