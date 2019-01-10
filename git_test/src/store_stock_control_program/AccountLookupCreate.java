@@ -130,7 +130,7 @@ public class AccountLookupCreate extends JPanel implements ActionListener {
 		createAccountPanel.add(managerField);
 		managerField.setColumns(10);
 
-		JLabel searchAccountLabel = new JLabel("계정 조회");
+		JLabel searchAccountLabel = new JLabel("계정 조회/삭제");
 		searchAccountLabel.setFont(new Font("굴림", Font.BOLD, 20));
 		searchAccountLabel.setBounds(12, 120, 99, 32);
 		add(searchAccountLabel);
