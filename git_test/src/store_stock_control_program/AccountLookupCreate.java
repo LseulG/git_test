@@ -132,7 +132,7 @@ public class AccountLookupCreate extends JPanel implements ActionListener {
 
 		JLabel searchAccountLabel = new JLabel("계정 조회/삭제");
 		searchAccountLabel.setFont(new Font("굴림", Font.BOLD, 20));
-		searchAccountLabel.setBounds(12, 120, 99, 32);
+		searchAccountLabel.setBounds(12, 120, 157, 32);
 		add(searchAccountLabel);
 
 		JScrollPane searchAccountscrollPane = new JScrollPane();
@@ -166,7 +166,7 @@ public class AccountLookupCreate extends JPanel implements ActionListener {
 		add(searchButton);
 
 		JPanel radiobuttonPanel2 = new JPanel();
-		radiobuttonPanel2.setBounds(155, 120, 246, 32);
+		radiobuttonPanel2.setBounds(181, 120, 220, 32);
 		add(radiobuttonPanel2);
 		
 
