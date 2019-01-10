@@ -1,4 +1,4 @@
-package project;
+package store_stock_control_program;
 
 /*
  * (매장) 판매관리 - 판매현황

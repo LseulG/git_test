@@ -1,4 +1,4 @@
-package project;
+package store_stock_control_program;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

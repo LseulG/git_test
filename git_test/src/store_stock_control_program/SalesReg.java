@@ -1,4 +1,4 @@
-package project;
+package store_stock_control_program;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -49,8 +49,8 @@ public class SalesReg extends JPanel implements ActionListener {
 	String divComboArray[] = { "판매", "반품" };
 	String sizeComboArray[] = { "S", "M", "L", "XL" };
 
-	// LocalDate currDate = LocalDate.now(); //오늘 날짜
-	LocalDate currDate = LocalDate.of(2018, 11, 1);
+	LocalDate currDate = LocalDate.now(); //오늘 날짜
+	//LocalDate currDate = LocalDate.of(2018, 11, 1);
 
 	String code = null;
 	int dayTotalPrice = 0;

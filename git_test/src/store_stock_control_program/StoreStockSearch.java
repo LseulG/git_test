@@ -1,4 +1,4 @@
-package project;
+package store_stock_control_program;
 
 /*
  * (매장,본사) 재고관리 - 매장 재고조회
