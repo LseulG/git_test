@@ -39,8 +39,8 @@ public class DBcon {
 	int monthTotalPrice = 0; // 월매출 저장 변수
 	String salesNum = "0"; // 일판매번호 저장변수
 
-	LocalDate currDate = LocalDate.now(); // 오늘 날짜
-	//LocalDate currDate = LocalDate.of(2018, 11, 1);
+	//LocalDate currDate = LocalDate.now(); // 오늘 날짜
+	LocalDate currDate = LocalDate.of(2018, 11, 1);
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
 	String currDateCode = currDate.format(formatter);
 
@@ -57,8 +57,8 @@ public class DBcon {
 	public void connect() {
 		// String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 		String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String ID = "project2";
-		String PW = "pro2";
+		String ID = "project1";
+		String PW = "pro1";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -1018,6 +1018,7 @@ public void createAccount(String id, String password, String personName, String 
 		}
 	}
 	
+	// 매장 계정삭제
 	public void deleteManagerAccount(String id,String storeGroup) {
 		String query;
 

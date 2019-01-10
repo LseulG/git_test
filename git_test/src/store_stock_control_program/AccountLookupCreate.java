@@ -204,24 +204,26 @@ public class AccountLookupCreate extends JPanel implements ActionListener {
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
+				// 매장 계정 삭제 Action
 				if(searchAccountTable.getSelectedRow() >= 0) {
 					int row = searchAccountTable.getSelectedRow();
 					String storeGroup = (String) searchAccountTable.getValueAt(row, 0);
 					String id = (String) searchAccountTable.getValueAt(row, 1);
 					String user = myDBcon.getLoginUser();
 					
-					myDBcon.checkCode(id);
-					String checkStoreCode = myDBcon.getStoreCode(); 
+					myDBcon.checkCode(id); // 현재 접속중인 매장코드를 getStoreCode메소드에 넘기기
+					String checkStoreCode = myDBcon.getStoreCode(); //현재 접속중인 매장가져오기
 					if(user.equals(checkStoreCode)) {
 						JOptionPane.showMessageDialog(null, "현재 접속중은 계정은 지울 수 없습니다.");
 					}else {
 						if(storeGroup.equals("매장")) {
 							myDBcon.deleteManagerAccount(id, storeGroup);
 							tableModel.removeRow(searchAccountTable.getSelectedRow());
+							// 매장 계정 삭제와 함께 jtable에서도 행삭제
 							JOptionPane.showMessageDialog(null, "삭제하였습니다.");							
 						}else {
 							JOptionPane.showMessageDialog(null, "본사계정은 접근이 불가능합니다.");
+							// 본사계정은 삭제 불가
 						}
 					}					
 				}else {
