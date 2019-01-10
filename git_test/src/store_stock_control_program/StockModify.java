@@ -102,9 +102,12 @@ public class StockModify extends JPanel {
 		JButton searchSizeButton = new JButton("재고 조회");
 		searchSizeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String productNo = proNoTextField.getText();
+				myDBcon.searchStockColor(colorComboBox, storeComboBox, productNo);
+				
+				if (colorComboBox.getSelectedItem() != null) {
 				String stockQuantity = "0";
 				String storeName = storeComboBox.getSelectedItem().toString();
-				String productNo = proNoTextField.getText();
 				String productColor = colorComboBox.getSelectedItem().toString();
 
 				myDBcon.searchSize(storeName, productNo, productColor, "S");
@@ -122,7 +125,7 @@ public class StockModify extends JPanel {
 				myDBcon.searchSize(storeName, productNo, productColor, "XL");
 				stockQuantity = myDBcon.getStockQuantity().toString();
 				XL_SizeField.setText(stockQuantity);
-
+				}
 			}
 		});
 
