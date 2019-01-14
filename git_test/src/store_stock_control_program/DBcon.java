@@ -39,7 +39,7 @@ public class DBcon {
 	int monthTotalPrice = 0; // 월매출 저장 변수
 	String salesNum = "0"; // 일판매번호 저장변수
 
-	//LocalDate currDate = LocalDate.now(); // 오늘 날짜
+//	LocalDate currDate = LocalDate.now(); // 오늘 날짜
 	LocalDate currDate = LocalDate.of(2018, 11, 1);
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
 	String currDateCode = currDate.format(formatter);
