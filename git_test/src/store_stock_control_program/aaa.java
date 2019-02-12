@@ -4,7 +4,7 @@ public class aaa {
 
 	public static void main(String[] args) {
 		
-		System.out.println("야호aaaaaaaaaa");
+		System.out.println("a를 수정하였습니다.");
 	
 	}
 
