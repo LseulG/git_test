@@ -3,7 +3,7 @@ package store_stock_control_program;
 public class bbb {
 
 	public static void main(String[] args) {
-		System.out.println("æ»≥Á!!!!!!!!!!!!!!!!"); 
+		System.out.println("æ»≥Á«œººø‰."); 
 
 	}
 
